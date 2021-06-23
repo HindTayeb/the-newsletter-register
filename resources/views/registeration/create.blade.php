@@ -4,12 +4,13 @@
 
 @section('content')
 
-{{-- @if (session('status'))
-<div class="alert alert-success" role="alert">
+ {{-- @if (session('status'))
+<div class="" role="alert">
     <button type="button" class="close" data-dismiss="alert">×</button>
 	{{ session('status') }}
 </div>
-
+@endif --}}
+{{--
 @elseif(session('failed'))
 <div class="alert alert-danger" role="alert">
 	<button type="button" class="close" data-dismiss="alert">×</button>
@@ -18,18 +19,39 @@
     
 @endif --}}
 
-@if (count($errors) > 0)
-@foreach ($errors as $e)
-<div class="alert alert-success" role="alert">
-    <button type="button" class="close" data-dismiss="alert">×</button>
-	{{ $e }}
-</div>
-@endforeach
-@endif
 
 <section class="min-h-screen grid place-items-center bg-gray-100">
+
     <form class="w-full max-w-lg" method="post" action="/register">
         @csrf
+
+        @if ($errors->any())
+        <div class="alert-toast m-8 w-5/6 max-w-sm">
+            <input type="checkbox" class="hidden" id="footertoast">
+            <label class="close cursor-pointer flex items-start justify-between w-full p-2 bg-red-500 h-15 rounded shadow-lg text-white" title="close" for="footertoast">
+                @foreach ($errors->all() as $e)
+                {{ $e }} <br>
+                @endforeach
+                <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+                </svg>
+            </label>
+        </div>
+        @endif
+
+        @if (session('status'))
+        <div class="alert-toast m-8 w-5/6 max-w-sm">
+            <input type="checkbox" class="hidden" id="footertoast">
+            <label class="close cursor-pointer flex items-start justify-between w-full p-2 bg-green-500 h-15 rounded shadow-lg text-white" title="close" for="footertoast">
+                {{ session('status') }}
+                <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+                </svg>
+            </label>
+        </div>
+        @endif
+        
+        
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
@@ -105,4 +127,20 @@
         </div>
     </form>
 </section>
+<style>
+    .alert-toast {
+		-webkit-animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+				animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	}
+
+	/*Toast close animation*/
+	.alert-toast input:checked ~ * {
+        display: none;
+		-webkit-animation: fade-out-right 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+				animation: fade-out-right 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	}
+
+    @-webkit-keyframes slide-in-right{0%{-webkit-transform:translateX(1000px);transform:translateX(1000px);opacity:0}100%{-webkit-transform:translateX(0);transform:translateX(0);opacity:1}}@keyframes slide-in-right{0%{-webkit-transform:translateX(1000px);transform:translateX(1000px);opacity:0}100%{-webkit-transform:translateX(0);transform:translateX(0);opacity:1}}@-webkit-keyframes fade-out-right{0%{-webkit-transform:translateX(0);transform:translateX(0);opacity:1}100%{-webkit-transform:translateX(50px);transform:translateX(50px);opacity:0}}@keyframes fade-out-right{0%{-webkit-transform:translateX(0);transform:translateX(0);opacity:1}100%{-webkit-transform:translateX(50px);transform:translateX(50px);opacity:0}}
+
+</style>
 @endsection

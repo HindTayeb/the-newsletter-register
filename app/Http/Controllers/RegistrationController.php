@@ -27,8 +27,8 @@ class RegistrationController extends Controller
         // ]);
 
         $validator = Validator::make($req->all(), [
-            'fname' => 'required|string',
-            'lname' => 'required|string',
+            'fname' => 'required|alpha',
+            'lname' => 'required|alpha',
             'email' => 'required|string|email',
             'phone' => 'required|digits:10'
         ]);
@@ -36,7 +36,7 @@ class RegistrationController extends Controller
         $message = $validator->errors();
 
         if ($validator->fails()) {
-            return redirect('create')
+            return redirect('/register')
 			->withInput()
 			->withErrors($message);
         }
@@ -49,7 +49,9 @@ class RegistrationController extends Controller
         $user->city = $req->city;
         $user->toRecieve = $req->torecieve;
 
-        echo $user->save();
+        $user->save();
+
+        return redirect('/register')->with('status', "Added Successfuly!");
 
 
         // $validator = Validated::make($request->all(), $rules);
