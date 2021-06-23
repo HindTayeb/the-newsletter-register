@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\City;
 // use Dotenv\Validator;
 use Illuminate\Support\Facades\Validator;
 use Exception;
@@ -12,7 +13,7 @@ use Illuminate\Auth\Events\Validated;
 class RegistrationController extends Controller
 {
     public function create() {
-        return view('registeration.create');
+        return view('registeration.create', ['cities' => City::all()]);
     }
 
     public function store(Request $req)
@@ -46,7 +47,7 @@ class RegistrationController extends Controller
         $user->lname = $req->lname;
         $user->email = $req->email;
         $user->phone = $req->phone;
-        $user->city = $req->city;
+        $user->city_id = $req->city;
         $user->toRecieve = $req->torecieve;
 
         $user->save();

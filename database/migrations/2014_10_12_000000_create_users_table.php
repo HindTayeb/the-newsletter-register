@@ -19,8 +19,9 @@ class CreateUsersTable extends Migration
             $table->string('lname');
             $table->string('email')->unique();
             $table->string('phone');
-            $table->string('city');
-            $table->boolean('toRecieve')->default(false);
+            // $table->string('city');
+            $table->foreignId('city_id');
+            $table->boolean('toRecieve')->nullable();
             // $table->timestamp('email_verified_at')->nullable();
             // $table->string('password');
             $table->rememberToken();

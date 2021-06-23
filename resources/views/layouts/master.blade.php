@@ -9,6 +9,8 @@
     <title>@yield('page-title')</title>
 </head>
 <body>
-    @yield('content')
+    <section class="min-h-screen grid place-items-center bg-gray-100">
+        @yield('content')
+    </section>
 </body>
 </html>
