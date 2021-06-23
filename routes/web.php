@@ -19,6 +19,8 @@ Route::get('/', function () {
 
 // Registeration
 Route::get('/register', [RegistrationController::class, 'create']);
+Route::post('/register', [RegistrationController::class, 'store']);
+
 // Route::get('/register', 'RegistrationController@create');
-// Route::post('register', 'RegistrationController@store');
+// Route::post('/register', 'RegistrationController@store');
 

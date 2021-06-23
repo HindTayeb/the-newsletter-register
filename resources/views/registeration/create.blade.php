@@ -3,23 +3,48 @@
 @section('page-title', 'register')
 
 @section('content')
+
+{{-- @if (session('status'))
+<div class="alert alert-success" role="alert">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+	{{ session('status') }}
+</div>
+
+@elseif(session('failed'))
+<div class="alert alert-danger" role="alert">
+	<button type="button" class="close" data-dismiss="alert">×</button>
+	{{ session('failed') }}
+</div>
+    
+@endif --}}
+
+@if (count($errors) > 0)
+@foreach ($errors as $e)
+<div class="alert alert-success" role="alert">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+	{{ $e }}
+</div>
+@endforeach
+@endif
+
 <section class="min-h-screen grid place-items-center bg-gray-100">
-    <form class="w-full max-w-lg">
+    <form class="w-full max-w-lg" method="post" action="/register">
+        @csrf
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
                 First Name
                 </label>
                 <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" 
-                id="grid-first-name" type="text" name="full-name" placeholder="Jane">
+                id="grid-first-name" type="text" name="fname" placeholder="Jane">
                 <p class="text-red-500 text-xs italic">Please fill out this field.</p>
             </div>
             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
                 Last Name
                 </label>
                 <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" 
-                id="grid-first-name" type="text" name="full-name" placeholder="Jane">
+                id="grid-last-name" type="text" name="lname" placeholder="Jane">
                 <p class="text-red-500 text-xs italic">Please fill out this field.</p>
             </div>
             </div>
@@ -43,7 +68,7 @@
                 <!-- <p class="text-gray-600 text-xs italic">Make it as long and as crazy as you'd like</p> -->
             </div>
         </div><!-- /flex -->
-        <div class="flex flex-wrap -mx-3 mb-2">
+        <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full px-3">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
                 City
@@ -65,7 +90,7 @@
             <div class="w-full px-3"><!-- w-full md:w-1/3 px-3 mb-6 md:mb-0 -->
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-check">
                     <input class="form-checkbox" 
-                    id="grid-check" type="checkbox" value="toRecieve" name="to-recieve">
+                    id="grid-check" type="checkbox" value="1" name="torecieve">
                     <span>Do you want to receive your information via email?</span>
                 </label>
             </div>
@@ -73,7 +98,7 @@
         <div class="md:flex md:items-center">
             <div class="md:w-1/3"></div>
             <div class="md:w-2/3">
-                <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
+                <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
                 Submit
                 </button>
             </div>
