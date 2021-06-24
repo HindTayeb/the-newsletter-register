@@ -1,7 +1,7 @@
 #### The Newsletter 
 
 
-## Start Locally (steps from (hootlex)[https://gist.github.com/hootlex/da59b91c628a6688ceb1])
+## Start Locally (steps from [hootlex](https://gist.github.com/hootlex/da59b91c628a6688ceb1])
 
 ## Windows users:
 - Download wamp: http://www.wampserver.com/en/
