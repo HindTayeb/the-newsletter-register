@@ -2,10 +2,10 @@
 <header class="w-full container mx-auto">
     <div class="flex flex-col items-center py-12">
         <a class="font-bold text-gray-800 uppercase hover:text-gray-700 text-4xl" href="#">
-            {{title}}
+            {{vTitle}}
         </a>
         <p class="text-lg text-gray-600">
-            {{subtitle}}
+            {{vSubtitle}}
         </p>
     </div>
 </header>
@@ -16,8 +16,8 @@ export default {
 
         data() {
             return {
-                title: this.title,
-                subtitle: this.subtitle
+                vTitle: this.title,
+                vSubtitle: this.subtitle
             }
         }
     }
