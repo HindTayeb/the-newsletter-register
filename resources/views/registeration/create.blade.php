@@ -1,10 +1,8 @@
 @extends('layouts.master')
 
-@section('page-title', 'register')
+@section('page-title', 'Register')
 
 @section('content')
-
-
     <form class="w-full max-w-lg" method="post" action="/register">
         @csrf
 
@@ -12,9 +10,11 @@
         <div class="alert-toast m-8 w-5/6 max-w-sm">
             <input type="checkbox" class="hidden" id="footertoast">
             <label class="close cursor-pointer flex items-start justify-between w-full p-2 bg-red-500 h-15 rounded shadow-lg text-white" title="close" for="footertoast">
+                <div style="display: inline-block">
                 @foreach ($errors->all() as $e)
-                {{ $e }} <br>
+                <p> {{ $e }} </p> 
                 @endforeach
+                </div>
                 <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
                 <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
                 </svg>
@@ -34,14 +34,13 @@
         </div>
         @endif
         
-        
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
                 First Name
                 </label>
                 <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
-                id="grid-first-name" type="text" name="fname" placeholder="Jane"> 
+                id="grid-first-name" type="text" name="fname" placeholder="Doe"> 
                 {{-- <p class="text-red-500 text-xs italic">Please fill out this field.</p> --}}
             </div>
             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
