@@ -20,9 +20,13 @@ window.Vue = require('vue').default;
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('header-component', require('./components/HeaderComponent.vue').default);
-Vue.component('flash-wrap-component', require('./components/FlashWrapComponent.vue').default);
-Vue.component('flash-component', require('./components/FlashComponent.vue').default);
+Vue.component('v-header', require('./components/HeaderComponent.vue').default);
+Vue.component('v-flash-wrap', require('./components/FlashWrapComponent.vue').default);
+Vue.component('v-flash', require('./components/FlashComponent.vue').default);
+Vue.component('v-input', require('./components/InputComponent.vue').default);
+Vue.component('v-input-group', require('./components/InputGroup.vue').default);
+Vue.component('v-single-wrap', require('./components/SingleInputWrap.vue').default);
+Vue.component('v-double-wrap', require('./components/DoubleInputWrap.vue').default);
 
 
 

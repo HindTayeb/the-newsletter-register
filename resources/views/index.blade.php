@@ -10,28 +10,46 @@
 </head>
 <body>        
         <div id="app">
-            <header-component></header-component>
+            <v-header></v-header>
 
             <form class="w-full max-w-lg" method="post" action="/register">
                 @csrf
                 
                 {{-- check for errors --}}
                 @if ($errors->any())
-                <flash-wrap-component>
+                <v-flash-wrap>
                     @foreach ($errors->all() as $e)
-                    <flash-component message="{{ $e }}"></flash-component>
+                    <v-flash message="{{ $e }}"></v-flash>
                     @endforeach
-                </flash-wrap-component>
+                </v-flash-wrap>
                 @endif
 
                 {{-- success message --}}
                 @if (session('status'))
-                <flash-wrap-component>
-                    <flash-component message="{{ session('status') }}"></flash-component> 
-                </flash-wrap-component>
+                <v-flash-wrap>
+                    <v-flash message="{{ session('status') }}"></v-flash> 
+                </v-flash-wrap>
                 @endif
 
-                
+                <v-input-grpud>
+                    <v-double-wrap>
+                        <v-label label="First Name" label-for="grid-first-name"></v-label>
+                        <v-input id="grid-first-name" type="text" name="fname" placeholder="Doe">
+                    </v-double-wrap>
+
+                    <v-double-wrap>
+                        <v-label label="Last Name" label-for="grid-last-name"></v-label>
+                        <v-input id="grid-last-name" type="text" name="lname" placeholder="Jane">
+                    </v-double-wrap>
+
+                    </div>
+                </v-input-grpud>
+
+                <v-input-grpud>
+                    <v-single-wrap>
+                        <v-label label="Email Address" label-for="grid-email"></v-label>
+                    </v-single-wrap>
+                </v-input-grpud>
 
             </form>
         </div>

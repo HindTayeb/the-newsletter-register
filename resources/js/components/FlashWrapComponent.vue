@@ -1,7 +1,7 @@
 <template>
 <div class="alert-toast m-8 w-5/6 max-w-sm">
             <input type="checkbox" class="hidden" id="footertoast">
-            <label :class="color" class="close cursor-pointer flex items-start justify-between w-full p-2 bg-red-500 h-15 rounded shadow-lg text-white" title="close" for="footertoast">
+            <label class="close cursor-pointer flex items-start justify-between w-full p-2 bg-red-500 h-15 rounded shadow-lg text-white" title="close" for="footertoast">
                 <div class="msg-container">
                 <slot></slot>
                 </div>

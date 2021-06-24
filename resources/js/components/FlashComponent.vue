@@ -1,5 +1,5 @@
 <template>
-<p> {{ body }} <p>
+<p> {{ body }} </p>
 </template>
 
 <script>
