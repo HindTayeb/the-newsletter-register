@@ -19,7 +19,9 @@ window.Vue = require('vue').default;
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('v-nav', require('./components/NavComponent.vue').default);
+Vue.component('v-nav-item', require('./components/NavItemComponent.vue').default);
+Vue.component('v-header', require('./components/HeaderComponent.vue').default);
 Vue.component('v-flash-wrap', require('./components/FlashWrapComponent.vue').default);
 Vue.component('v-flash', require('./components/FlashComponent.vue').default);
 Vue.component('v-input', require('./components/InputComponent.vue').default);
