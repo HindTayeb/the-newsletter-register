@@ -14,7 +14,7 @@ use App\Http\Controllers\RegistrationController;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('welcome');
 });
 
 // Registeration
