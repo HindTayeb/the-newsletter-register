@@ -6,10 +6,8 @@ use Mail;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\City;
-use Illuminate\Http\RedirectResponse;
 // use Dotenv\Validator;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Controllers\MailController;
 
 
 class RegistrationController extends Controller
