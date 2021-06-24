@@ -1,7 +1,7 @@
 <template>
 <div class="alert-toast m-8 w-5/6 max-w-sm">
             <input type="checkbox" class="hidden" id="footertoast">
-            <label class="close cursor-pointer flex items-start justify-between w-full p-2 bg-red-500 h-15 rounded shadow-lg text-white" title="close" for="footertoast">
+            <label :class="vColor" class="close cursor-pointer flex items-start justify-between w-full p-2 bg-red-500 h-15 rounded shadow-lg text-white" title="close" for="footertoast">
                 <div class="msg-container">
                 <slot></slot>
                 </div>
@@ -14,11 +14,37 @@
 
 <script>
     export default {
-        
+        props: ['color'],
+
+        data() {
+            return {
+                vColor: this.color
+            }
+        }
     }
 </script>
 <style>
 .msg-container {
     display: inline-block
 }
+.alert-toast {
+		-webkit-animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+				animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	}
+	.alert-toast input:checked ~ * {
+        display: none;
+	}
+
+    @-webkit-keyframes slide-in-right {
+        0% {
+            -webkit-transform:translateX(1000px); 
+            transform:translateX(1000px);
+            opacity:0
+        }
+        100%{ 
+            -webkit-transform:translateX(0);
+            transform:translateX(0);
+            opacity:1}
+            }@keyframes slide-in-right{0%{-webkit-transform:translateX(1000px);transform:translateX(1000px);opacity:0}100%{-webkit-transform:translateX(0);transform:translateX(0);opacity:1}}@-webkit-keyframes fade-out-right{0%{-webkit-transform:translateX(0);transform:translateX(0);opacity:1}100%{-webkit-transform:translateX(50px);transform:translateX(50px);opacity:0}}@keyframes fade-out-right{0%{-webkit-transform:translateX(0);transform:translateX(0);opacity:1}100%{-webkit-transform:translateX(50px);transform:translateX(50px);opacity:0}}
+
 </style>

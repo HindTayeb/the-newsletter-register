@@ -16,7 +16,7 @@
         
         {{-- check for errors --}}
         @if ($errors->any())
-        <v-flash-wrap>
+        <v-flash-wrap color="bg-red-500">
             @foreach ($errors->all() as $e)
             <v-flash message="{{ $e }}"></v-flash>
             @endforeach
@@ -25,7 +25,7 @@
 
         {{-- success message --}}
         @if (session('status'))
-        <v-flash-wrap>
+        <v-flash-wrap color="bg-green-500">
             <v-flash message="{{ session('status') }}"></v-flash> 
         </v-flash-wrap>
         @endif

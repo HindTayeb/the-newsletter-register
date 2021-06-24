@@ -73,7 +73,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['color'],
+  data: function data() {
+    return {
+      vColor: this.color
+    };
+  }
+});
 
 /***/ }),
 
@@ -129,15 +136,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['id', 'type', 'name', 'placeholder'],
   data: function data() {
     return {
-      iid: this.id,
-      itype: this.type,
-      iname: this.name,
-      iplacehoder: this.placeholder
+      vId: this.id,
+      vType: this.type,
+      vName: this.name,
+      vPlacehoder: this.placeholder,
+      msg: []
     };
+  },
+  watch: {
+    vType: function vType(value) {
+      if (value == "tel") {
+        this.validateNumber(value);
+      }
+    }
+  },
+  methods: {
+    validateNumber: function validateNumber(value) {
+      if (/^(05)(0|1|3|4|5|6|7|8|9)([0-9]{7})$/i.test(value)) {
+        this.msg['phone'] = '';
+      } else {
+        this.msg['phone'] = 'Please fill number in this format 05********.';
+      }
+    }
   }
 });
 
@@ -322,7 +349,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.msg-container {\n    display: inline-block\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.msg-container {\n    display: inline-block\n}\n.alert-toast {\n\t\t-webkit-animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;\n\t\t\t\tanimation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;\n}\n.alert-toast input:checked ~ * {\n        display: none;\n}\n@-webkit-keyframes slide-in-right {\n0% { \n            transform:translateX(1000px);\n            opacity:0\n}\n100%{\n            transform:translateX(0);\n            opacity:1}\n}@keyframes slide-in-right{0%{transform:translateX(1000px);opacity:0}100%{transform:translateX(0);opacity:1}}@-webkit-keyframes fade-out-right{0%{transform:translateX(0);opacity:1}100%{transform:translateX(50px);opacity:0}}@keyframes fade-out-right{0%{transform:translateX(0);opacity:1}100%{transform:translateX(50px);opacity:0}}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1634,6 +1661,7 @@ var render = function() {
       {
         staticClass:
           "close cursor-pointer flex items-start justify-between w-full p-2 bg-red-500 h-15 rounded shadow-lg text-white",
+        class: _vm.vColor,
         attrs: { title: "close", for: "footertoast" }
       },
       [
@@ -1769,16 +1797,24 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("input", {
-    staticClass:
-      "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
-    attrs: {
-      id: _vm.iid,
-      type: _vm.itype,
-      name: _vm.iname,
-      placeholder: _vm.iplacehoder
-    }
-  })
+  return _c("div", [
+    _c("input", {
+      staticClass:
+        "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
+      attrs: {
+        id: _vm.vId,
+        type: _vm.vType,
+        name: _vm.vName,
+        placeholder: _vm.vPlacehoder
+      }
+    }),
+    _vm._v(" "),
+    _vm.msg.phone
+      ? _c("p", { staticClass: "text-red-500 text-xs italic" }, [
+          _vm._v(_vm._s(_vm.msg.phone))
+        ])
+      : _vm._e()
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
